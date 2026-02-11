@@ -5,12 +5,18 @@ const router = express.Router();
 
 // customer_search → POST /tools/customer/search
 router.post("/search", (req, res) => {
+    console.log("Customer Search Body:", req.body);
     const { lookup } = req.body;
+
+    if (!lookup) {
+        return res.json({ result: "Please provide a name, phone number, or account number to search." });
+    }
+
     const customer = customers.find(c =>
         c.customerId === lookup ||
         c.phone === lookup ||
-        c.name.toLowerCase().includes(lookup.toLowerCase()) ||
-        c.address.toLowerCase().includes(lookup.toLowerCase())
+        (c.name && c.name.toLowerCase().includes(lookup.toLowerCase())) ||
+        (c.address && c.address.toLowerCase().includes(lookup.toLowerCase()))
     );
 
     if (!customer) return res.json({ result: "Customer not found." });
