@@ -31,12 +31,13 @@ app.use((req, res, next) => {
     next();
 });
 
-// Echo route for testing
-app.post("/debug/echo", (req, res) => res.json({
-    received: req.body,
-    final_customerId: req.body.customerId,
-    final_lookup: req.body.lookup
-}));
+// Tool Call Logger - Logs every incoming tool request for debugging
+app.use((req, res, next) => {
+    if (req.path.startsWith("/tools/")) {
+        console.log(`[TOOL CALL] Path: ${req.path} | Name: ${req.body.name || 'N/A'} | Params: ${JSON.stringify(req.body.args || req.body)}`);
+    }
+    next();
+});
 
 // Vapi tool routes — exact path match
 app.use("/tools/customer", customerRoutes);
