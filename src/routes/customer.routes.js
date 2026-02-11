@@ -6,7 +6,16 @@ const router = express.Router();
 // customer_search → POST /tools/customer/search
 router.post("/search", (req, res) => {
     console.log("Customer Search Body:", req.body);
-    const { lookup } = req.body;
+
+    // Try to find the search term in various possible fields
+    const lookup = req.body.lookup ||
+        req.body.query ||
+        req.body.name ||
+        req.body.customer_name ||
+        req.body.phone ||
+        req.body.account ||
+        req.body.customerId ||
+        (req.body.args && req.body.args.lookup); // Nested check
 
     if (!lookup) {
         return res.json({ result: "Please provide a name, phone number, or account number to search." });
