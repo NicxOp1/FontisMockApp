@@ -18,7 +18,7 @@ export const customers = [
         invoices: [
             {
                 key: "INV001",
-                date: "2025-11-10",
+                date: "2027-11-10",
                 total: 42.15,
                 items: [
                     { product: "5 Gallon Spring Water", quantity: 4 },
@@ -26,17 +26,17 @@ export const customers = [
                 ]
             }
         ],
-        nextDelivery: "2025-11-24",
+        nextDelivery: "2027-11-24",
         contract: {
             type: "Water Only",
             monthToMonth: true,
-            signedDate: "2025-06-01"
+            signedDate: "2027-06-01"
         },
         workOrders: [
             {
                 id: "WO1001",
                 status: "Scheduled",
-                date: "2025-11-22",
+                date: "2027-11-22",
                 type: "Cooler Pickup"
             }
         ],
@@ -45,7 +45,7 @@ export const customers = [
                 id: "ORD001",
                 status: "Pending",
                 changeRequested: true,
-                date: "2025-11-15",
+                date: "2027-11-15",
                 items: [
                     { product: "5 Gallon Spring Water", quantity: 6 }
                 ]
@@ -53,7 +53,7 @@ export const customers = [
         ],
         cardExpiry: {
             month: "12",
-            year: "2025"
+            year: "2027"
         },
         deliverySchedule: {
             frequency: "Bi-weekly",
@@ -62,8 +62,8 @@ export const customers = [
             routeId: "RT-101"
         },
         deliveryHistory: [
-            { date: "2025-11-10", status: "Delivered", items: "4x 5 Gallon Spring Water, 1x Cooler Rental" },
-            { date: "2025-10-27", status: "Delivered", items: "4x 5 Gallon Spring Water" }
+            { date: "2027-11-10", status: "Delivered", items: "4x 5 Gallon Spring Water, 1x Cooler Rental" },
+            { date: "2027-10-27", status: "Delivered", items: "4x 5 Gallon Spring Water" }
         ],
         deliveryStops: [
             {
@@ -94,18 +94,18 @@ export const customers = [
         paymentMethod: { type: "Mastercard", last4: "9912" },
         standingOrder: [],
         invoices: [],
-        nextDelivery: "2025-11-25",
+        nextDelivery: "2027-11-25",
         contract: {
             type: "Equipment",
-            startDate: "2025-01-01",
-            endDate: "2026-01-01",
-            signedDate: "2024-12-15"
+            startDate: "2027-01-01",
+            endDate: "2028-01-01",
+            signedDate: "2028-12-15"
         },
         workOrders: [],
         orders: [],
         cardExpiry: {
             month: "03",
-            year: "2026"
+            year: "2028"
         },
         deliverySchedule: {
             frequency: "Weekly",
