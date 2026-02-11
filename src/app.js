@@ -19,11 +19,24 @@ app.use(auth);
 
 // Retell Compatibility: Automatically un-nest "args" into top-level req.body
 app.use((req, res, next) => {
-    if (req.body && req.body.args && typeof req.body.args === 'object') {
-        Object.assign(req.body, req.body.args);
+    if (req.body && req.body.args) {
+        let args = req.body.args;
+        if (typeof args === 'string') {
+            try { args = JSON.parse(args); } catch (e) { }
+        }
+        if (typeof args === 'object' && args !== null) {
+            Object.assign(req.body, args);
+        }
     }
     next();
 });
+
+// Echo route for testing
+app.post("/debug/echo", (req, res) => res.json({
+    received: req.body,
+    final_customerId: req.body.customerId,
+    final_lookup: req.body.lookup
+}));
 
 // Vapi tool routes — exact path match
 app.use("/tools/customer", customerRoutes);
