@@ -17,6 +17,14 @@ app.use(cors());
 app.use(express.json());
 app.use(auth);
 
+// Retell Compatibility: Automatically un-nest "args" into top-level req.body
+app.use((req, res, next) => {
+    if (req.body && req.body.args && typeof req.body.args === 'object') {
+        Object.assign(req.body, req.body.args);
+    }
+    next();
+});
+
 // Vapi tool routes — exact path match
 app.use("/tools/customer", customerRoutes);
 app.use("/tools/billing", billingRoutes);
